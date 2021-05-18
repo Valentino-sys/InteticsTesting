@@ -1,0 +1,6 @@
+#org.jbehave.core.embedder.StoryManager
+#Tue May 18 18:16:05 MSK 2021
+login.story=70000
+threads=1
+total=70000
+threadAverage=70000
