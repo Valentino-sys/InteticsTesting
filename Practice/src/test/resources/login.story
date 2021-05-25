@@ -1,5 +1,5 @@
 
-Scenario: Login
+Scenario: Login.Save and Delete book
 Given I open login page
 When I click the button
 And I enter 'email' valentinolariu2017@gmail.com
@@ -10,7 +10,6 @@ Then I check if a part of the text matches
 
 Given I go to the book page 'url' 3263607
 When I click  button want to read
-Then The inscription View shelf appeared
 
 
 Given I go to the my books page

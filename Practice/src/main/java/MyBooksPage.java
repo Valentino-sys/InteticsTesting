@@ -19,4 +19,7 @@ public class MyBooksPage {
     public String booksListIsEmpty() {
         return driver.findElement(By.xpath("//div[contains(text(),' No matching items!')]")).getText();
     }
+    public  void  refresh(){
+        driver.navigate().refresh();
+    }
 }

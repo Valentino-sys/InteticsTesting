@@ -16,12 +16,9 @@ public class BookPage {
         driver.findElement(By.xpath("//button[@class='wtrToRead']")).click();
     }
 
-    public String getTextFromMessage() {
-        return driver.findElement(By.xpath("//a[@href='/review/list/134262262?shelf=to-read']")).getText();
-    }
 
     public void clickMyBooksButton(){
-        driver.findElement(By.xpath("//a[@data-reactid='.16q11frkr70.1.0.2.0.1.0']")).click();
+        driver.findElement(By.xpath("//a[contains(text(),'My Books')]")).click();
     }
 
 
