@@ -4,7 +4,6 @@ import org.jbehave.core.annotations.Named;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -65,10 +64,5 @@ public class Login {
     @Then("I check if a part of the text matches")
     public void partOfTheText() {
         assertThat(mainTitlePage.getText(), anyOf(containsString("Rec"), endsWith("ns")));
-    }
-
-
-    public void quit() {
-        mainTitlePage.quit();
     }
 }
