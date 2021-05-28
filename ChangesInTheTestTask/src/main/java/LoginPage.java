@@ -1,42 +1,38 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
 
 public class LoginPage extends WebDriverParent {
-    private WebElement loginButton;
-    private WebElement emailField;
-    private WebElement passwordField;
-    private WebElement signInButton;
-
+    private By loginButton = By.xpath("//a[@href='/user/sign_in']");
+    private By emailField = By.xpath("//input[@id ='user_email']");
+    private By passwordField = By.xpath("//input[@id='user_password']");
+    private By signInButton = By.xpath("//input[@value='Sign in']");
+    private UrlLink url;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
-        this.loginButton = driver.findElement(By.xpath("//a[@href='/user/sign_in']"));
-        this.emailField = driver.findElement(By.xpath("//input[@id ='user_email']"));
-        this.passwordField = driver.findElement(By.xpath("//input[@id='user_password']"));
-        this.signInButton = driver.findElement(By.xpath("//input[@value='Sign in']"));
-
+        this.url = UrlLink.URL_LOGIN_PAGE;
     }
 
     public void openLoginPage() {
-        driver.get("https://www.goodreads.com/");
+        driver.get(url.getUrlAddress());
+
     }
 
     public void clickButton() {
-        loginButton.click();
+        driver.findElement(loginButton).click();
     }
 
     public void enterEmail(String eMail) {
-        emailField.sendKeys(eMail);
+        driver.findElement(emailField).sendKeys(eMail);
     }
 
     public void enterPassword(String password) {
-        passwordField.sendKeys(password);
+        driver.findElement(passwordField).sendKeys(password);
     }
 
     public void clickButtonSignIn() {
-        signInButton.click();
+        driver.findElement(signInButton).click();
     }
 
 }

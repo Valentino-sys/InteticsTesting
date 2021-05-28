@@ -1,16 +1,19 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyBooksPage extends WebDriverParent {
-    private WebElement deleteButton;
-    private WebElement msg;
+    private WebDriverWait wait;
+    private int timeOutSecond;
+    private By deleteButton = By.xpath("//img [@alt = 'Remove from my books']");
+    private By msg = By.xpath("//div[contains(text(),' No matching items!')]");
 
 
     public MyBooksPage(WebDriver driver) {
         this.driver = driver;
-        this.deleteButton = driver.findElement(By.xpath("//img [@alt = 'Remove from my books']"));
-        this.msg = driver.findElement(By.xpath("//div[contains(text(),' No matching items!')]"));
+        this.timeOutSecond = 5;
+        this.wait = new WebDriverWait(driver, timeOutSecond);
     }
 
     public String booksListIsNotEmpty() {
@@ -18,16 +21,22 @@ public class MyBooksPage extends WebDriverParent {
     }
 
     public void clickDeleteButton() {
-        deleteButton.click();
+        driver.findElement(deleteButton).click();
+    }
+
+    public void explicitWait() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(msg));
     }
 
     public String booksListIsEmpty() {
-        return msg.getText();
+        return driver.findElement(msg).getText();
     }
-    public  void  refresh(){
-        driver.navigate().refresh();
+
+    public void browserNotification() {
+        driver.switchTo().alert().accept();
     }
-    public void quit(){
+
+    public void quit() {
         driver.quit();
     }
 }

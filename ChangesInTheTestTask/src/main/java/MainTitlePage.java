@@ -1,14 +1,13 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+
 
 public class MainTitlePage extends WebDriverParent {
-    private WebElement text;
+    private By text = By.xpath("//a[@href='/recommendations']");
 
 
     public MainTitlePage(WebDriver driver) {
         this.driver = driver;
-        this.text = driver.findElement(By.xpath("//a[@href='/recommendations']"));
     }
 
     public String atMainPage() {
@@ -16,7 +15,7 @@ public class MainTitlePage extends WebDriverParent {
     }
 
     public String getText() {
-        return text.getText();
+        return driver.findElement(text).getText();
     }
 
     public void quit() {

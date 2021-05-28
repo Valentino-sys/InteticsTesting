@@ -10,7 +10,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 
-
 public class Login {
 
     private WebDriver webDriver;
@@ -19,7 +18,7 @@ public class Login {
     private BookPage bookPage;
     private MyBooksPage myBooksPage;
     private String mainTitleText;
-    private String url;
+    private UrlLink url;
 
 
     public Login() {
@@ -30,13 +29,14 @@ public class Login {
         this.bookPage = new BookPage(webDriver);
         this.myBooksPage = new MyBooksPage(webDriver);
         this.mainTitleText = "Recent updates | Goodreads";
-        this.url = "https://www.goodreads.com/book/show/";
+        this.url = UrlLink.URL_BOOK_PAGE;
     }
 
 
     @Given("I open login page")
     public void openPage() {
         loginPage.openLoginPage();
+        bookPage.settings();
     }
 
     @When("I click the button")
@@ -72,7 +72,7 @@ public class Login {
 
     @Given("I go to the book page 'url' $id")
     public void openBooksPage(@Named("id") String id) {
-        bookPage.openBooksPage(url + id);
+        bookPage.openBooksPage(url.getUrlAddress() + id);
         bookPage.settings();
 
     }
@@ -91,21 +91,22 @@ public class Login {
 
     @When("I check that my book is on the list")
     public void checkListBooksTest() {
-        bookPage.refresh();
-        assertThat(myBooksPage.booksListIsNotEmpty(), anyOf(containsString("The Fellowship of the Ring (The ")));
+        assertThat(myBooksPage.booksListIsNotEmpty(), anyOf(containsString("The Fellowship of the Ring ")));
     }
 
     @When("I delete the book")
     public void deleteBook() {
         myBooksPage.clickDeleteButton();
+        myBooksPage.browserNotification();
     }
 
     @Then("I check that my book is not in the list")
     public void checkMyBookIsNotInTheList() {
+        myBooksPage.explicitWait();
         assertThat(myBooksPage.booksListIsEmpty(), anyOf(containsString("No matching items!")));
     }
 
-    public void quit() {
+    public void quitBrowser() {
         myBooksPage.quit();
     }
 
