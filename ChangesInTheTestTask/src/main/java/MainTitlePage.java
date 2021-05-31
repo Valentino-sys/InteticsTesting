@@ -2,8 +2,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
+
 public class MainTitlePage extends WebDriverParent {
     private By text = By.xpath("//a[@href='/recommendations']");
+    private By browseButton = By.xpath("//span[contains(text(),'Browse ▾')]");
+    private By classicsButton = By.xpath("//a[@href='/genres/classics']");
 
 
     public MainTitlePage(WebDriver driver) {
@@ -18,8 +21,14 @@ public class MainTitlePage extends WebDriverParent {
         return driver.findElement(text).getText();
     }
 
-    public void quit() {
-        driver.quit();
+    public void clickButtonBrowse() {
+        driver.findElement(browseButton).click();
+
     }
+
+    public void clickButtonClassics() {
+        driver.findElement(classicsButton).click();
+    }
+
 
 }

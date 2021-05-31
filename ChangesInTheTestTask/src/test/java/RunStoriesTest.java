@@ -29,6 +29,7 @@ public class RunStoriesTest extends JUnitStories {
 
     @Override
     protected List<String> storyPaths() {
-        return Arrays.asList("login.story");
+        return Arrays.asList("workingWithRecommendations.story");
     }
+
 }

@@ -8,6 +8,8 @@ public class MyBooksPage extends WebDriverParent {
     private int timeOutSecond;
     private By deleteButton = By.xpath("//img [@alt = 'Remove from my books']");
     private By msg = By.xpath("//div[contains(text(),' No matching items!')]");
+    private By currentlyReadingLink = By.xpath("//a[@href='/review/list/134262262-valentin?ref=nav_mybooks&shelf=currently-reading']");
+    private By titleBook = By.xpath("//div[@id='rightCol']");
 
 
     public MyBooksPage(WebDriver driver) {
@@ -17,7 +19,7 @@ public class MyBooksPage extends WebDriverParent {
     }
 
     public String booksListIsNotEmpty() {
-        return driver.findElement(By.xpath("//div[@id='rightCol']")).getText();
+        return driver.findElement(titleBook).getText();
     }
 
     public void clickDeleteButton() {
@@ -34,6 +36,10 @@ public class MyBooksPage extends WebDriverParent {
 
     public void browserNotification() {
         driver.switchTo().alert().accept();
+    }
+
+    public void clickCurrentlyReadingLink() {
+        driver.findElement(currentlyReadingLink).click();
     }
 
     public void quit() {
